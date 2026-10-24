@@ -1,5 +1,10 @@
-
+import os
 import discord
+from dotenv import load_dotenv
+
+load_dotenv()
+
+TOKEN = os.getenv("DISCORD_TOKEN")
 
 intents = discord.Intents.default()
 intents.members = True
@@ -69,4 +74,7 @@ async def on_member_join(member):
         print(f"Discord error: {error}")
 
 
-client.run("BOT_TOKEN")
+if not TOKEN:
+    raise RuntimeError("DISCORD_TOKEN is missing from .env")
+
+client.run(TOKEN)
