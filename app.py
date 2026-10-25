@@ -126,7 +126,7 @@ async def link(interaction: discord.Interaction, username: str):
     if await reject_verified(interaction):
         return
 
-    if not re.fullmatch(r"[A-Za-z0-9_]{3,16}", username):
+    if not re.fullmatch(r"[A-Za-z0-9_.]{3,16}", username):
         await interaction.response.send_message(
             "❌ Enter a valid Minecraft username (3–16 letters, numbers, or underscores).",
             ephemeral=True
